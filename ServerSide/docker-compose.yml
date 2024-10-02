@@ -1,38 +1,7 @@
-# services:
-  
-#   db:
-#     image: mysql:8.0   # MySQLのイメージ
-#     environment:
-#       MYSQL_DATABASE: sample_db          # データベース名
-#       MYSQL_ROOT_PASSWORD: password      # ルートユーザーのパスワード
-#     ports:
-#       - "3306:3306"    # ホストのポート3306をコンテナのポート3306にマッピング
-#     volumes:
-#       - db_data:/var/lib/mysql   # データを永続化するためのボリューム
-#     platform: linux/arm64
-
-#   app:
-#     build:
-#       context: .        # Dockerfile の場所（プロジェクトのルートディレクトリ）
-#       dockerfile: Dockerfile  # Dockerfile の名前（デフォルトで "Dockerfile" を使用）
-#     ports:
-#       - "8080:8080"    # ホストのポート8080をコンテナのポート8080にマッピング
-#     environment:
-#       DB_HOST: db      # DBコンテナのホスト名
-#       DB_PORT: 3306    # DBのポート番号
-#       DB_USER: root    # MySQLのユーザー
-#       DB_PASSWORD: password  # MySQLのパスワード
-#     depends_on:
-#       - db             # appサービスがdbサービスに依存していることを指定
-#     platform: linux/arm64
-
-# volumes:
-#   db_data:              # MySQLのデータ保存用ボリューム
-
 services:
   db:
     image: mysql:8.0
-    container_name: profile_blog
+    container_name: profile-blog-db
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: assignment
@@ -59,7 +28,7 @@ services:
     environment:
       DB_USER: root
       DB_PASSWORD: password
-      DB_NAME: profile_blog
+      DB_NAME: assignment
       DB_HOST: db
 
 volumes:

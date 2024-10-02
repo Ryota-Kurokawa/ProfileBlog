@@ -31,33 +31,33 @@
 # # # 11. Set the entry point to start the application
 # # CMD ["./main"]
 
-# # ベースイメージとしてGoを使用
-# FROM golang:1.22.0-alpine
+# ベースイメージとしてGoを使用
+FROM golang:1.22.0-alpine
 
-# # 作業ディレクトリを設定
-# WORKDIR /app
-
-# # Goモジュールとソースコードをコピー
-# COPY go.mod ./
-# COPY go.sum ./
-# RUN go mod download
-
-# COPY . .
-
-# # アプリケーションをビルド
-# RUN go build -o main .
-
-# # アプリケーションを実行
-# CMD ["go", "run", "main.go"]
-
-FROM golang:1.22.0-alpine AS builder
+# 作業ディレクトリを設定
 WORKDIR /app
-COPY go.mod go.sum ./
-RUN go mod download
-COPY . .
-RUN CGO_ENABLED=0 GOOS=linux go build -o main .
 
-FROM alpine:latest
-WORKDIR /root/
-COPY --from=builder /app/main .
-CMD ["./main"]
+# Goモジュールとソースコードをコピー
+COPY go.mod ./
+COPY go.sum ./
+RUN go mod download
+
+COPY . .
+
+# アプリケーションをビルド
+RUN go build -o main .
+
+# アプリケーションを実行
+CMD ["go", "run", "main.go"]
+
+# FROM golang:1.22.0-alpine AS builder
+# WORKDIR /app
+# COPY go.mod go.sum ./
+# RUN go mod download
+# COPY . .
+# RUN CGO_ENABLED=0 GOOS=linux go build -o main .
+
+# FROM alpine:latest
+# WORKDIR /root/
+# COPY --from=builder /app/main .
+# CMD ["./main"]
