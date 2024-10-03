@@ -1,12 +1,11 @@
-package Entity
+package entity
 
-import "time"
+import "gorm.io/gorm"
 
 type Blog struct {
-	blogId      string
-	title       string
-	content     string
-	authorId    string
-	createdDate time.Time
-	updatedDate time.Time
+	gorm.Model
+
+	Title    string
+	Content  string
+	AuthorId string
 }

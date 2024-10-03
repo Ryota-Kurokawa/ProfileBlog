@@ -1,10 +1,11 @@
-package Entity
+package entity
+
+import "gorm.io/gorm"
 
 type UserInfo struct {
-	name       string
-	userId     string
-	age        int
-	skillTag   []string
-	profileUrl []string
-	profile    string
+	gorm.Model
+
+	Name    string
+	Age     int
+	Profile string
 }
