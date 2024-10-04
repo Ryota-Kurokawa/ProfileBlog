@@ -9,3 +9,10 @@ type UserInfo struct {
 	Age     int
 	Profile string
 }
+
+type User struct {
+	ID      uint
+	Name    string
+	Age     int
+	Profile string
+}
